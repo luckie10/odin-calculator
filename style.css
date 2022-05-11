@@ -18,14 +18,6 @@ body {
 }
 
 .buttons {
-	display: flex;
-}
-
-.numbers {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-}
-.operators {
-	display: flex;
-	flex-direction: column;
+	grid-template-columns: repeat(4, 1fr);
 }
