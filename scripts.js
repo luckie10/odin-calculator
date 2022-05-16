@@ -1,4 +1,4 @@
-const operators = {
+const operatorFunctions = {
 	add: function (a, b) { return a + b; },
 	subtract: function (a, b) { return a - b; },
 	multiply: function (a, b) { return a * b; },
@@ -7,42 +7,39 @@ const operators = {
 	operate: function (operator, a, b) { return this[operator](a, b); }
 }
 
+const OPERATORS = {
+	'+': 'add',
+	'-': 'subtract',
+	'x': 'multiply',
+	'/': 'divide',
+}
+
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equationDisplay = document.getElementById('equationDisplay');
-const inputDisplay = document.getElementById('inputDisplay');
+const resultDisplay = document.getElementById('resultDisplay');
 
-let inputDisplayValue;
-let equationDisplayValue = '';
+let firstOperand;
+let secondOperand;
 
-function updateEquationDisplay(content) {
-	console.log(equationDisplayValue);
-	equationDisplay.textContent = content; 
-}
-
-function updateInputDisplay(content) {
-	inputDisplay.textContent = content;
-}
-
-function appendNumber(event) {
-	if (!inputDisplayValue) {
-		inputDisplayValue = event.target.textContent;
+function appendNumber(number) {
+	if (!equationDisplay.textContent) {
+		equationDisplay.textContent = number;
 	} else {
-		inputDisplayValue += event.target.textContent;
+		equationDisplay.textContent += number;
 	}
-
-	updateInputDisplay(inputDisplayValue);
 }
 
-function appendOperator(event) {
-	equationDisplayValue = `${equationDisplayValue} ${inputDisplayValue} ${event.target.id}`
-	updateEquationDisplay(equationDisplayValue);
+function appendOperator(operator) {
+	if (!equationDisplayValue) return
+
+	equationDisplay.textContent = `${equationDisplayValue} ${operator}`
 }
 
 operatorButtons.forEach(button => {
-	button.addEventListener('click', appendOperator);
+	button.addEventListener('click', () => appendOperator(button.textContent));
 });
 
 numberButtons.forEach(button => {
-	button.addEventListener('click', appendNumber);
+	button.addEventListener('click', () => appendNumber(button.textContent));
 });
