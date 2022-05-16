@@ -8,23 +8,40 @@ const operators = {
 }
 
 const numberButtons = document.querySelectorAll('.number');
-const display = document.getElementById('display');
+const operatorButtons = document.querySelectorAll('.operator');
+const equationDisplay = document.getElementById('equationDisplay');
+const inputDisplay = document.getElementById('inputDisplay');
 
-let displayValue = '0';
+let inputDisplayValue;
+let equationDisplayValue = '';
 
-function updateDisplay(content) {
-	display.textContent = content;
+function updateEquationDisplay(content) {
+	console.log(equationDisplayValue);
+	equationDisplay.textContent = content; 
+}
+
+function updateInputDisplay(content) {
+	inputDisplay.textContent = content;
 }
 
 function clickNumber(event) {
-	if (displayValue === '0') {
-		displayValue = event.target.id;
+	if (!inputDisplayValue) {
+		inputDisplayValue = event.target.id;
 	} else {
-		displayValue += event.target.id;
+		inputDisplayValue += event.target.id;
 	}
 
-	updateDisplay(displayValue);
+	updateInputDisplay(inputDisplayValue);
 }
+
+function clickOperator(event) {
+	equationDisplayValue = `${equationDisplayValue} ${inputDisplayValue} ${event.target.id}`
+	updateEquationDisplay(equationDisplayValue);
+}
+
+operatorButtons.forEach(button => {
+	button.addEventListener('click', clickOperator);
+});
 
 numberButtons.forEach(button => {
 	button.addEventListener('click', clickNumber);
