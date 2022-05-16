@@ -24,25 +24,25 @@ function updateInputDisplay(content) {
 	inputDisplay.textContent = content;
 }
 
-function clickNumber(event) {
+function appendNumber(event) {
 	if (!inputDisplayValue) {
-		inputDisplayValue = event.target.id;
+		inputDisplayValue = event.target.textContent;
 	} else {
-		inputDisplayValue += event.target.id;
+		inputDisplayValue += event.target.textContent;
 	}
 
 	updateInputDisplay(inputDisplayValue);
 }
 
-function clickOperator(event) {
+function appendOperator(event) {
 	equationDisplayValue = `${equationDisplayValue} ${inputDisplayValue} ${event.target.id}`
 	updateEquationDisplay(equationDisplayValue);
 }
 
 operatorButtons.forEach(button => {
-	button.addEventListener('click', clickOperator);
+	button.addEventListener('click', appendOperator);
 });
 
 numberButtons.forEach(button => {
-	button.addEventListener('click', clickNumber);
+	button.addEventListener('click', appendNumber);
 });
