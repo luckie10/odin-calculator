@@ -8,6 +8,7 @@ const OPERATORS = {
 let activeOperator;
 let firstOperand;
 let secondOperand;
+let clearMainDisplay = false;
 
 const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
@@ -31,8 +32,9 @@ const operatorFunctions = {
 }
 
 function appendNumber(number) {
-	if (!mainDisplay.textContent || activeOperator) {
+	if (!mainDisplay.textContent || clearMainDisplay) {
 		mainDisplay.textContent = number;
+		clearMainDisplay = false;
 	} else {
 		mainDisplay.textContent += number;
 	}
@@ -44,6 +46,7 @@ function appendOperator(operator) {
 
 	firstOperand = mainDisplay.textContent;
 	activeOperator = operator;
+	clearMainDisplay = true;
 
 	equationDisplay.textContent = `${mainDisplay.textContent} ${operator} `
 }
@@ -57,6 +60,7 @@ function equals() {
 			.operate(OPERATORS[activeOperator], firstOperand, secondOperand);
 
 	activeOperator = null;
+	clearMainDisplay = true;
 }
 
 operatorButtons.forEach(button => {
@@ -74,4 +78,5 @@ clearButton.addEventListener('click', () => {
 	firstOperand = '';
 	secondOperand = '';
 	activeOperator = null;
+	clearMainDisplay = false;
 });
