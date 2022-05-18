@@ -32,7 +32,8 @@ const operatorFunctions = {
 }
 
 function appendNumber(number) {
-	if (!mainDisplay.textContent || clearMainDisplay) {
+	if ((!mainDisplay.textContent || mainDisplay.textContent === '0') ||			
+			clearMainDisplay) {
 		mainDisplay.textContent = number;
 		clearMainDisplay = false;
 	} else {
@@ -53,6 +54,7 @@ function appendOperator(operator) {
 }
 
 function equals() {
+	if (activeOperator === '/' && mainDisplay.textContent === '0') return
 	if (!activeOperator || mainDisplay.textContent === '') return
 	secondOperand = mainDisplay.textContent;
 
