@@ -49,9 +49,11 @@ function appendOperator(operator) {
 	clearMainDisplay = true;
 
 	equationDisplay.textContent = `${mainDisplay.textContent} ${operator} `
+	mainDisplay.textContent = '';
 }
 
 function equals() {
+	if (!activeOperator || mainDisplay.textContent === '') return
 	secondOperand = mainDisplay.textContent;
 
 	equationDisplay.textContent = 
