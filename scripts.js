@@ -67,8 +67,17 @@ function equals() {
 	clearMainDisplay = true;
 }
 
+function clear() {
+	equationDisplay.textContent = '';
+	mainDisplay.textContent = '';
+	firstOperand = '';
+	secondOperand = '';
+	activeOperator = null;
+	clearMainDisplay = false;
+}
+
 function round(value, precision) {
-	return Number(Math.round(value+'e'+precision)+'e-'+precision);
+	return Number(Math.round(value + 'e' + precision) + 'e-' + precision);
 }
 
 operatorButtons.forEach(button => {
@@ -80,11 +89,4 @@ numberButtons.forEach(button => {
 });
 
 equalsButton.addEventListener('click', equals);
-clearButton.addEventListener('click', () => {
-	equationDisplay.textContent = '';
-	mainDisplay.textContent = '';
-	firstOperand = '';
-	secondOperand = '';
-	activeOperator = null;
-	clearMainDisplay = false;
-});
+clearButton.addEventListener('click', clear);
