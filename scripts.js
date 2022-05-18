@@ -65,6 +65,10 @@ function equals() {
 	clearMainDisplay = true;
 }
 
+function round(value, precision) {
+	return Number(Math.round(value+'e'+precision)+'e-'+precision);
+}
+
 operatorButtons.forEach(button => {
 	button.addEventListener('click', () => appendOperator(button.textContent));
 });
