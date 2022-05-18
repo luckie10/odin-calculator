@@ -14,6 +14,7 @@ const numberButtons = document.querySelectorAll('.number');
 const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.getElementById('clear');
+const decimalButton = document.getElementById('decimal');
 const equationDisplay = document.getElementById('equationDisplay');
 const mainDisplay = document.getElementById('mainDisplay');
 
@@ -53,6 +54,16 @@ function appendOperator(operator) {
 	mainDisplay.textContent = '';
 }
 
+function appendDecimal(){
+	if (mainDisplay.textContent.match(/\./)) return
+
+	if (!mainDisplay.textContent || clearMainDisplay) {
+		mainDisplay.textContent = '0.';
+		clearMainDisplay = false;
+	} else 
+		mainDisplay.textContent += '.';
+}
+
 function equals() {
 	if (activeOperator === '/' && mainDisplay.textContent === '0') return
 	if (!activeOperator || mainDisplay.textContent === '') return
@@ -90,3 +101,4 @@ numberButtons.forEach(button => {
 
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clear);
+decimalButton.addEventListener('click', appendDecimal);
