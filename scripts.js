@@ -15,6 +15,7 @@ const operatorButtons = document.querySelectorAll('.operator');
 const equalsButton = document.querySelector('.equals');
 const clearButton = document.getElementById('clear');
 const decimalButton = document.getElementById('decimal');
+const percentButton = document.getElementById('percent');
 const equationDisplay = document.getElementById('equationDisplay');
 const mainDisplay = document.getElementById('mainDisplay');
 
@@ -28,7 +29,7 @@ const operatorFunctions = {
 		a = Number(a);
 		b = Number(b);
 		
-		return this[operator](a, b);
+		return round(this[operator](a, b), 10);
 	}
 }
 
@@ -87,6 +88,12 @@ function clear() {
 	clearMainDisplay = false;
 }
 
+function convertToPercentage(value) {
+	equationDisplay.textContent = `${mainDisplay.textContent}% =`
+	mainDisplay.textContent = operatorFunctions
+			.divide(mainDisplay.textContent, 100);
+}
+
 function round(value, precision) {
 	return Number(Math.round(value + 'e' + precision) + 'e-' + precision);
 }
@@ -102,3 +109,4 @@ numberButtons.forEach(button => {
 equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clear);
 decimalButton.addEventListener('click', appendDecimal);
+percentButton.addEventListener('click', convertToPercentage);
