@@ -16,6 +16,7 @@ const equalsButton = document.querySelector('.equals');
 const clearButton = document.getElementById('clear');
 const decimalButton = document.getElementById('decimal');
 const percentButton = document.getElementById('percent');
+const negativeButton = document.getElementById('negative')
 const equationDisplay = document.getElementById('equationDisplay');
 const mainDisplay = document.getElementById('mainDisplay');
 
@@ -88,10 +89,18 @@ function clear() {
 	clearMainDisplay = false;
 }
 
-function convertToPercentage(value) {
-	equationDisplay.textContent = `${mainDisplay.textContent}% =`
+function convertToPercentage() {
+	equationDisplay.textContent = `${mainDisplay.textContent}% =`;
 	mainDisplay.textContent = operatorFunctions
 			.divide(mainDisplay.textContent, 100);
+}
+
+function toggleNegative() {
+	let matchNegative = mainDisplay.textContent.match(/^(-)(\d*)/) 
+	if (matchNegative)
+		mainDisplay.textContent = matchNegative[2];
+	else
+		mainDisplay.textContent = `-${mainDisplay.textContent}`;
 }
 
 function round(value, precision) {
@@ -110,3 +119,4 @@ equalsButton.addEventListener('click', equals);
 clearButton.addEventListener('click', clear);
 decimalButton.addEventListener('click', appendDecimal);
 percentButton.addEventListener('click', convertToPercentage);
+negativeButton.addEventListener('click', toggleNegative);
