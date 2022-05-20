@@ -21,3 +21,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 }
+
+button:nth-child(17) {
+	grid-column: span 2;
+}
