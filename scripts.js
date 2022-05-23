@@ -103,6 +103,23 @@ function toggleNegative() {
 		mainDisplay.textContent = `-${mainDisplay.textContent}`;
 }
 
+function handleKeyboardInput(key) {
+	console.log(key)
+	if (key.match(/\d/)) {
+		appendNumber(key);
+	} else if (key.match(/[-+\/\*]/)) {
+		appendOperator(key);
+	} else if (key === '=' || key === 'Enter') {
+		equals();
+	} else if (key === '%'){
+		convertToPercentage();
+	} else if (key === 'Delete') {
+		clear ();
+	} else if (key === '.') {
+		appendDecimal();
+	}
+}
+
 function round(value, precision) {
 	return Number(Math.round(value + 'e' + precision) + 'e-' + precision);
 }
@@ -120,3 +137,4 @@ clearButton.addEventListener('click', clear);
 decimalButton.addEventListener('click', appendDecimal);
 percentButton.addEventListener('click', convertToPercentage);
 negativeButton.addEventListener('click', toggleNegative);
+window.addEventListener('keydown', event => handleKeyboardInput(event.key));
