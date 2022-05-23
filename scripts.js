@@ -104,20 +104,12 @@ function toggleNegative() {
 }
 
 function handleKeyboardInput(key) {
-	console.log(key)
-	if (key.match(/\d/)) {
-		appendNumber(key);
-	} else if (key.match(/[-+\/\*]/)) {
-		appendOperator(key);
-	} else if (key === '=' || key === 'Enter') {
-		equals();
-	} else if (key === '%'){
-		convertToPercentage();
-	} else if (key === 'Delete') {
-		clear ();
-	} else if (key === '.') {
-		appendDecimal();
-	}
+	if (key.match(/\d/)) appendNumber(key);
+	if (key.match(/[-+\/\*]/)) appendOperator(key);
+	if (key === '=' || key === 'Enter') equals();
+	if (key === '%') convertToPercentage();
+	if (key === 'Delete') clear();
+	if (key === '.')	appendDecimal();
 }
 
 function round(value, precision) {
