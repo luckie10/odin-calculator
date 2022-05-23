@@ -52,7 +52,7 @@ function appendOperator(operator) {
 	activeOperator = operator;
 	clearMainDisplay = true;
 
-	equationDisplay.textContent = `${mainDisplay.textContent} ${operator} `
+	equationDisplay.textContent = `${mainDisplay.textContent}${operator} `
 	mainDisplay.textContent = '';
 }
 
@@ -72,7 +72,7 @@ function equals() {
 	secondOperand = mainDisplay.textContent;
 
 	equationDisplay.textContent = 
-			`${firstOperand} ${activeOperator} ${secondOperand} =`;
+			`${firstOperand}${activeOperator}${secondOperand}=`;
 	mainDisplay.textContent = operatorFunctions
 			.operate(OPERATORS[activeOperator], firstOperand, secondOperand);
 
@@ -90,7 +90,7 @@ function clear() {
 }
 
 function convertToPercentage() {
-	equationDisplay.textContent = `${mainDisplay.textContent}% =`;
+	equationDisplay.textContent = `${mainDisplay.textContent}%`;
 	mainDisplay.textContent = operatorFunctions
 			.divide(mainDisplay.textContent, 100);
 }
