@@ -2,6 +2,7 @@ const OPERATORS = {
 	'+': 'add',
 	'-': 'subtract',
 	'x': 'multiply',
+	'*': 'multiply',
 	'/': 'divide',
 }
 
